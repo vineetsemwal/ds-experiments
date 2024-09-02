@@ -12,7 +12,11 @@ public class BinarySearchExp {
 
     /**
      *
-     *  uses binary search ie. finds the mid (low+high)/2
+     *  uses binary search ie. finds the mid index (low index+high index)/2 and compares the midIndex element with the desired element
+     *
+     * if desired element is greater than mid index element , lowindex is set to midIndex+1 and iteration starts again
+     * if desired element is smaller than mid index element , highIndex is set to midIndex and iteration starts again
+     * if midIndex element is equal to what is desired then we break loop and return result
      *
      *  Worst case Scenario :Time Complexity O(Log n with base 2)
      *  Auxiliary Space Needed(not including input space): O(1) ie. space size will stay constant even if input size increases
@@ -31,7 +35,7 @@ public class BinarySearchExp {
                 return midIndex;
             }
             if(inputArray[midIndex]<searchFor){
-                lowIndex=midIndex;
+                lowIndex=midIndex+1;
                 continue;
             }
 

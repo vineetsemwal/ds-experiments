@@ -14,7 +14,7 @@ public class FactorialExpRecursive {
      * Auxiliary Space  : O(n) since for every recursion new stack frame will be created
      *
      * @param number, input for which factorial has to be calculated
-     * @return
+     * @return result, factorial of number
      */
     int factorial(int number) {
         int result = 1;
