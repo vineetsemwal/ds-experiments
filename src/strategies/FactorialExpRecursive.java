@@ -10,10 +10,10 @@ public class FactorialExpRecursive {
     }
 
     /**
-     * 4
-     * 3 * 2 *1
+     * Time Complexity : O(n)
+     * Auxiliary Space  : O(n) since for every recursion new stack frame will be created
      *
-     * @param number
+     * @param number, input for which factorial has to be calculated
      * @return
      */
     int factorial(int number) {

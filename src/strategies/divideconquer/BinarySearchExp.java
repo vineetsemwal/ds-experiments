@@ -12,9 +12,10 @@ public class BinarySearchExp {
 
     /**
      *
-     *  uses binary search
+     *  uses binary search ie. finds the mid (low+high)/2
      *
-     *  Time Complexity O(Log n with base 2)
+     *  Worst case Scenario :Time Complexity O(Log n with base 2)
+     *  Auxiliary Space Needed(not including input space): O(1) ie. space size will stay constant even if input size increases
      *
      * @param inputArray  array of numbers
      * @param searchFor element to be searched

@@ -10,10 +10,10 @@ public class FactorialExpIterative {
     }
 
     /**
-     * 4
-     * 3 * 2 *1
+     * Time Complexity O(n)
+     * Auxiliary space : O(1)
      *
-     * @param number
+     * @param number, for which factorial has to be calculated
      * @return factorial result
      */
     int factorial(int number) {
