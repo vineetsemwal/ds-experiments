@@ -14,7 +14,12 @@ public class FileSearchUtil {
             System.out.println("found at path="+result.get());
         }
     }
+
     /**
+     *
+     *
+     * Worst Case Time Complex: O(n) where n represents the total files from root startPath
+     *  Auxiliary Space: O(n)
      *
      * @param startPath
      * @param fileName
