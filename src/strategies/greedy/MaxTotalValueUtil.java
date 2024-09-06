@@ -16,7 +16,12 @@ public class MaxTotalValueUtil {
     }
 
     /**
-     * Worst case Scenario  Time Complexity : O(n)
+     * Follows Greedy Algorithm
+     *  Finds best value in each iteration/stage
+     *  Add to the total Solution
+     *  Repeat again
+     *
+     * Worst case Scenario  Time Complexity : O(nLog(n,2))
      * Auxiliary Space (not including input): O(1)
      * @param items
      * @param capacity
@@ -38,11 +43,8 @@ public class MaxTotalValueUtil {
             if (item.weight < capacity) {
                 totalValue = totalValue + (item.weight * perKgValue);
                 capacity = capacity - item.weight;
-                System.out.println("total when weight smaller than capacity="+totalValue);
                 continue;
             }
-            System.out.println("when capacity smaller than item weight available="+capacity);
-            System.out.println("total value="+totalValue);
             totalValue = totalValue + (capacity * perKgValue);
             capacity = 0;
 
@@ -50,7 +52,7 @@ public class MaxTotalValueUtil {
         return totalValue;
     }
 
-    static class Item {
+   private static class Item {
         final double value;
         final int weight;
 
@@ -66,3 +68,4 @@ public class MaxTotalValueUtil {
     }
 
 }
+
