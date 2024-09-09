@@ -38,7 +38,7 @@ public class ActivitySelectionDemo {
      * @param deadLine number of days available before which we have to finish activities
      * @return activities selected sequentially
      */
-    List<Activity> selectedActivities(final Collection<Activity> availableActivities, int deadLine) {
+    List<Activity> selectedActivities(final Collection<Activity> availableActivities, final int deadLine) {
         List<Activity> orderedActivities = availableActivities.stream()
                 .sorted((activity1, activity2) -> activity1.endDay - activity2.endDay)
                 .toList();
