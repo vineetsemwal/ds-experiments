@@ -14,15 +14,10 @@ public class MaxTotalValueUtil2 {
         list.add(new Item("mango", 3000d, 15));
         list.add(new Item("banana", 850, 17));
         list.add(new Item("guvava", 400, 20));
-        List<ChosenItem> result = demo.totalMax(list, 25);
-        Optional<Double>totalResult =result.stream().map(orderedItem -> {
-            double weightPerKG = orderedItem.item.value / orderedItem.item.weight;
-            double orderedValue = orderedItem.orderedWeight * weightPerKG;
-            return orderedValue;
-        }).reduce(Double::sum);
-        double totalResultValue=totalResult.orElse(0d);
+        ContainerValue containerValue = demo.totalMax(list, 25);
+        double totalResultValue=containerValue.totalValue;
         System.out.println("total result Value="+totalResultValue);
-        result.forEach(orderedItem -> {
+        containerValue.filledItems.forEach(orderedItem -> {
             double weightPerKG = orderedItem.item.value / orderedItem.item.weight;
             double orderedValue = orderedItem.orderedWeight * weightPerKG;
             System.out.println("ordered item=" + orderedItem.orderedWeight + "--" + orderedItem.item.name + " ordered value=" + orderedValue);
@@ -45,32 +40,42 @@ public class MaxTotalValueUtil2 {
      * @param capacity
      * @return total Value after filling items
      */
-    List<ChosenItem> totalMax(List<Item> items, int capacity) {
+    ContainerValue totalMax(List<Item> items, int capacity) {
         items.sort((item1, item2) -> {
             double item1PerKgValue = item1.value / item1.weight;
             double item2PerKgValue = item2.value / item2.weight;
             return Double.compare(item2PerKgValue, item1PerKgValue);
         });
         System.out.println("sorted list" + items);
-        List<ChosenItem> orderedItems = new ArrayList<>();
+        List<ChosenItem> chosenItems = new ArrayList<>();
         double totalValue = 0;
         for (Item item : items) {
             if (capacity == 0) {
-                return orderedItems;
+                return new ContainerValue(totalValue,chosenItems);
             }
             double perKgValue = item.value / item.weight;
             if (item.weight < capacity) {
                 totalValue = totalValue + (item.weight * perKgValue);
                 capacity = capacity - item.weight;
-                orderedItems.add(new ChosenItem(item, item.weight));
+                chosenItems.add(new ChosenItem(item, item.weight));
                 continue;
             }
             totalValue = totalValue + (capacity * perKgValue);
-            orderedItems.add(new ChosenItem(item, capacity));
+            chosenItems.add(new ChosenItem(item, capacity));
             capacity = 0;
 
         }
-        return orderedItems;
+        ContainerValue containerValue=new ContainerValue(totalValue,chosenItems);
+        return containerValue;
+    }
+
+    private static class ContainerValue {
+        private final double totalValue;
+        private final List<ChosenItem> filledItems;
+        public ContainerValue(final double totalValue, final List<ChosenItem>filledItems){
+            this.totalValue=totalValue;
+            this.filledItems=filledItems;
+        }
     }
 
     private static class ChosenItem {

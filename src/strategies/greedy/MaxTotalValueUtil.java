@@ -36,7 +36,7 @@ public class MaxTotalValueUtil {
         System.out.println("sorted list"+items);
         double totalValue = 0;
         for (Item item : items) {
-            if (capacity <= 0) {
+            if (capacity == 0) {
                 return totalValue;
             }
             double perKgValue =  item.value/item.weight;
