@@ -31,7 +31,7 @@ public class ActivitySelectionDemo {
      *  2) Add to final Solution
      *  Repeat from Step 1)
      *
-     *  Worst Case Scenario Time Complexity  O(n) where n is the length of available activities collection
+     *  Worst Case Scenario Time Complexity  O(n Log(n,2)) where n is the length of available activities collection
      *  Auxiliary Space (not including Input Space):   O(n)
      *
      * @param availableActivities available activities from which activities have to be chosen

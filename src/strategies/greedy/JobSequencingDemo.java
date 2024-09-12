@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+
 public class JobSequencingDemo {
     public static void main(String[] args) {
         JobSequencingDemo demo = new JobSequencingDemo();
@@ -12,10 +13,11 @@ public class JobSequencingDemo {
                 new Job("job1", 100, 3),
                 new Job("job2", 10, 1),
                 new Job("job3", 80, 2),
-                new Job("job4", 50, 2)
+                new Job("job4", 50, 2),
+                new Job("job4", 70, 2)
         );
-        //int daysAvailable=10;
-        JobSequencingResult result = demo.jobSequencing(availableJobs);
+        int daysAvailable=2;
+        JobSequencingResult result = demo.jobSequencing(availableJobs, daysAvailable);
         System.out.println("total profit=" + result.totalProfit);
         for (int day=0;day<result.selectedJobs.size();day++){
             Job job=result.selectedJobs.get(day);
@@ -24,13 +26,29 @@ public class JobSequencingDemo {
 
     }
 
-    JobSequencingResult jobSequencing(final Collection<Job> availableJobs) {
+    /**
+     *
+     *  Maximizes Profit by using Greedy Algorithm
+     * Sort the Job in descending order of Profit
+     * At every iteration add the profit(best value) to total Profit which become globally best result
+     *
+     * Worst case Time Complexity:
+     * Auxiliary Space (not including input memory space): O(n^2)
+     *
+     * @param availableJobs
+     * @return JobSequencingResult which contains jobs sequence and total result
+     */
+    JobSequencingResult jobSequencing(final Collection<Job> availableJobs, final int availableDays) {
         List<Job> orderedJobs = availableJobs.stream().sorted((job1, job2) -> Double.compare(job2.profit, job1.profit))
                 .toList();
         Job[] days = new Job[availableJobs.size()];
         double totalProfit = 0;
         for (Job iteratedJob : orderedJobs) {
-            for (int j = iteratedJob.deadLineDay; j >= 1; j--) {
+            int deadline=iteratedJob.deadLineDay;
+            if(iteratedJob.deadLineDay>availableDays){
+                deadline=availableDays;
+            }
+            for (int j = deadline; j >= 1; j--) {
                 if (days[j] == null) {
                     days[j] = iteratedJob;
                     totalProfit = totalProfit + iteratedJob.profit;
