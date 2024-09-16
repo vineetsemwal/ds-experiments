@@ -16,7 +16,7 @@ public class FactorialDynamic {
      *
      *  (with using Dynamic Programming, time complexity will be O(n^2) and Auxiliary space will be O(1))
      *
-     *  Time Complexity O(n)  where n is the number,
+     *  Time Complexity : O(n)  where n is the number
      *  Auxiliary Space : O(n) where n is the value of number
      *
      * @param number
