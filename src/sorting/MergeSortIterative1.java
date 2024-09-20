@@ -1,6 +1,6 @@
 package sorting;
 
-import java.util.Arrays;
+import java.util.*;
 
 
 public class MergeSortIterative1 {
@@ -22,13 +22,13 @@ public class MergeSortIterative1 {
      * @param inputArray
      */
     void mergeSort(final int inputArray[]) {
-        for (int levelElements = 1; levelElements <inputArray.length; levelElements = levelElements * 2) {
-            for (int leftIndex = 0; leftIndex < inputArray.length; leftIndex = leftIndex + (2 * levelElements)) {
-                int rightIndex = leftIndex + (2 * levelElements);
+        for (int level = 1; level <inputArray.length; level = level * 2) {
+            for (int leftIndex = 0; leftIndex < inputArray.length; leftIndex = leftIndex + (2 * level)) {
+                int rightIndex = leftIndex + (2 * level);
                 if (rightIndex >= inputArray.length) {
                     rightIndex = inputArray.length - 1;
                 }
-                int midIndex = leftIndex + levelElements;
+                int midIndex = leftIndex + level;
                 if (midIndex >= inputArray.length) {
                     midIndex = inputArray.length - 1;
                 }
