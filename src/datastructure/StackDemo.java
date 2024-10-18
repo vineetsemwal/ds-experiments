@@ -18,5 +18,6 @@ public class StackDemo {
             //fetch last element and remove
             System.out.println(stack.pollLast());
         }
+
     }
 }

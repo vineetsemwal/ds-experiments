@@ -1,23 +1,25 @@
 package sorting;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.function.Function;
 
 public class MergeSortIterative2 {
     public static void main(String[] args) {
         int array[] = {10, 9, 12, 20, 8, 5, 4};
         MergeSortIterative2 demo = new MergeSortIterative2();
         demo.mergeSort(array);
-        Arrays.stream(array).forEach((element) -> System.out.print(element + "     "));
+        Arrays.stream(array).forEach(System.out::println);
+
 
     }
-
 
 
     /**
      * iterative merge sort bottom up approach,
      * At every Level in worst case scenario n comparisons are done and there are Log(n,2) levels
-     *  Worst Case scenario Time Complexity: O(n Log(n,2))
-     *  Auxiliary Space (without including input size) : O(n)
+     * Worst Case scenario Time Complexity: O(n Log(n,2))
+     * Auxiliary Space (without including input size) : O(n)
      *
      * @param inputArray
      */
@@ -49,7 +51,7 @@ public class MergeSortIterative2 {
         int leftIndexCounter = leftStartIndex;
         int rightIndexCounter = midIndex;
         int i = 0;
-        for (; leftIndexCounter+i< midIndex && rightIndexCounter <= rightEndIndex; i++) {
+        for (; leftIndexCounter + i < midIndex && rightIndexCounter <= rightEndIndex; i++) {
             if (inputArray[leftIndexCounter] < inputArray[rightIndexCounter]) {
                 temp[i] = inputArray[leftIndexCounter];
                 leftIndexCounter++;
